@@ -1,0 +1,37 @@
+﻿@using FirstBlazerApp.Data
+
+    <div style="
+    margin: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: lightgray;
+    border-color: red;
+    border-radius: 25px;
+    border-style: solid;
+    text-align: center;
+    padding:4px;
+    ">
+        <div>
+            <p>@result.InputString</p>
+            <p>@result.OutputString</p>
+            <button class="btn btn-primary" @onclick="RemoveSelf">Delete</button>
+        </div>
+    </div>
+
+
+@code {
+    private void RemoveSelf()
+    {
+        results.Remove(result);
+        OnUpdate();
+    }
+
+    [Parameter]
+    public Action OnUpdate { get; set; }
+
+    [Parameter]
+    public List<StringResult> results { get; set; }
+
+    [Parameter]
+    public StringResult result { get; set; }
+}

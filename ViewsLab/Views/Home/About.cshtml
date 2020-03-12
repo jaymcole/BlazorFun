@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using ViewsLab.Models
+@model Movie
+
+    <form asp-controller="Home" asp-action="About" method="post">
+        <label for="ID">ID: </label>
+        <input type="text" asp-for="ID" id="id" />
+        <label for="Title">Title: </label>
+        <input type="text" asp-for="Title" id="title" />
+        <label for="ReleaseDate">Release Date: </label>
+        <input type="text" asp-for="ReleaseDate" id="releasedate" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <ul>
+        <li>ID: @Model.ID</li>
+        <li>Title: @Model.Title</li>
+        <li> Release: @Model.ReleaseDate.ToString("ddd d MMM yyyy", new System.Globalization.CultureInfo("en-US"))</li>
+    </ul>
+

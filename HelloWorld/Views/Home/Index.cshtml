@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ResultModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h3>Student List</h3>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<partial name="_ResultsList" model="Model" />
+
+

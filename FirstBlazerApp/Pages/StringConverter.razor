@@ -1,0 +1,67 @@
+﻿@page "/converter"
+
+@using FirstBlazerApp.Data
+@inject StringResultService StringService
+
+<h1>String Converter</h1>
+
+<p>Takes an input gives an output.</p>
+
+
+<div>
+    <EditForm Model="@tempResult" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputText id="name" @bind-Value="tempResult.InputString" />
+
+        <button type="submit">"tempResult.InputString"</button>
+    </EditForm>
+</div>
+
+<div>
+    <button class="btn btn-primary" @onclick="ClearAllResults">
+        Clear Results
+    </button>
+
+
+    @if (results != null)
+    {
+        @foreach (var result in results)
+        {
+            <ResultView results=results result=result OnUpdate="@Updated"/>
+        }
+    }
+</div>
+
+@code  {
+    private static List<StringResult> results;
+    private static StringResult tempResult = new StringResult();
+
+    protected override void OnInitialized()
+    {
+        results = new List<StringResult>();
+    }
+
+    public void Updated()
+    {
+        this.StateHasChanged();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        tempResult = await StringService.GetStringResultAsync(tempResult);
+
+        results.Insert(0, new StringResult()
+        {
+            InputString = tempResult.InputString,
+            OutputString = tempResult.OutputString
+        });
+    }
+
+    private void ClearAllResults()
+    {
+        results = new List<StringResult>();
+    }
+}
+

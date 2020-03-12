@@ -1,0 +1,71 @@
+﻿@model IEnumerable<HelloWorld.Models.ResultModel>
+
+@{
+    ViewData["Title"] = "_ResultsList";
+}
+
+@foreach (var item in Model)
+{
+    <div style="border: 2px solid black; 
+                margin: 4px; 
+                border-color:blueviolet;
+                background-color: cornflowerblue; 
+                border-radius: 5px"
+         >
+        @*@RenderSection()*@
+        @RenderBody()
+        <p>
+            @Html.DisplayFor(modelItem => item.ResultId) @Html.DisplayFor(modelItem => item.InputString) @Html.ActionLink("X", "Delete", new { item.ResultId }) |
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.ResponseString)
+        </p>
+    </div>
+}
+
+
+
+
+
+
+
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ResultId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InputString)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ResponseString)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResultId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponseString)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
